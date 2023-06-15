@@ -1,1 +1,97 @@
+#Questao 1.a 
+import pandas as pd
+
+dataSet = pd.read_csv('/content/world_alcohol.csv')
+ddsAgrupadosPorB = dataSet.groupby('Beverage Types')
+
+for bebidas, grupo in bebidasFiltradas:
+    print(f"A seguir, os dados requisitados filtrados pelos tipos de bebida: {bebidas}", grupo)
+    print()
+
+______________________________________________________________________________________________________
+
+#Questao 1.b)
+import pandas as pd
+
+dataSet = pd.read_csv('/content/world_alcohol.csv')
+ddsAgrupadosPorReAn = dataSet.groupby(['WHO region', 'Year'])
+
+for (region, year), group in ddsAgrupadosPorReAn:
+    print("A seguir os dados agrupados por regiao: ", region, "\nJunto deles, os dados agrupados por ano: ", year)
+    print(group)
+    print("--------------------------------------------------")
+
+______________________________________________________________________________________________________
+
+#Questao 1.c)
+import pandas as pd
+
+#Novamente, carregamento do conjunto de dados...
+dataSet = pd.read_csv('/content/world_alcohol.csv')
+
+# Conta as ocorrencias das regioes...
+contagemOcrrReg = dataSet['WHO region'].value_counts()
+
+# Conta as ocorrencias de paises...
+contagemOcrrPaises = dataSet['Country'].value_counts()
+
+# Aqui sera calculada a soma da coluna de valores pelas bebidas
+somaColpBebida = dataSet.groupby('Beverage Types')['Display Value'].sum()
+
+# Abaixo irao ser exibidos os resultados requisitados
+print("A seguir, a contagem de regioes: ", contagemOcrrReg, "\nJunto da contagem, teremos a contagem de paises: ", contagemOcrrPaises, "\nPor fim, a soma da coluna de valores por bebida: ", somaColpBebida)
+
+______________________________________________________________________________________________________
+
+#Questao 1.d)
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Abaixo o conjunto de dados
+dataSet = pd.read_csv('world_alcohol.csv')
+
+# Faz as analises estatisticas da coluna dos valores
+analiseEstats= dataSet.groupby('Beverage Types')['Display Value'].agg(['mean', lambda x: x.mode().iat[0], 'median', 'describe'])
+
+# Alteracao do nome da funcao lambda para indicar o modo
+analiseEstats.rename(columns={ '<lambda_0>': 'mode' }, inplace=True)
+
+# Grafico de comparação dos valores agrupados por tipo de bebida
+agrpPorBebida = dataSet.groupby('Beverage Types')['Display Value'].sum()
+
+# A montagem e exibicao do grafico
+plt.figure(figsize=(12, 6))
+agrpPorBebida.plot(kind='bar')
+plt.title('Comparacao dos valores agrupados pelo tipo de bebida')
+plt.xlabel('Tipo de Bebida')
+plt.ylabel('Soma dos Valores')
+plt.xticks(rotation=45)
+plt.show()
+
+# Mostrar o resultado final das estatisticas
+print("A seguir sera mostrado as analises estatisticas:\n", analiseEstats)
+
+______________________________________________________________________________________________________
+
+
+#Questao 1.e)
+
+import pandas as pd
+
+# Carregar o conjunto de dados CSV
+dataSet = pd.read_csv('world_alcohol.csv')
+
+# Configurar para mostrar os dados da coluna de bebidas de 1985!
+colBebidas85 = dataSet[dataSet['Year'] == 1985]['Beverage Types']
+
+# Imprimir os resultados
+print("Coluna de Bebidas do ano de 1985:")
+print(colBebidas85)
+
+# Configurar para mostrar a coluna de regioes com valores acima de 4 apenas!
+colRegiao4 = dataSet[dataSet['Display Value'] > 4]['WHO region']
+
+# Imprimir os resultados
+print("Abaixo: A coluna de regioes apenas com valores acima de 4\n", colRegiao4)
 
