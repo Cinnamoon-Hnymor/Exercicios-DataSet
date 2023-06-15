@@ -1,5 +1,5 @@
-1. Obtenha o dataset do endereço https://www.w3resource.com/pythonexercises/pandas/filter/world_alcohol.csv e realize as seguintes análises (2,5 pontos):
-a. Agrupe os dados por tipo de bebidas;
+#1. Obtenha o dataset do endereço https://www.w3resource.com/pythonexercises/pandas/filter/world_alcohol.csv e realize as seguintes análises (2,5 pontos):
+#a. Agrupe os dados por tipo de bebidas;
 
 #Questao 1.a 
 import pandas as pd
@@ -13,7 +13,7 @@ for bebidas, grupo in bebidasFiltradas:
 
 ______________________________________________________________________________________________________
 
-b. Agrupe os dados por Região e por Ano;
+#b. Agrupe os dados por Região e por Ano;
 
 #Questao 1.b)
 import pandas as pd
@@ -28,8 +28,8 @@ for (region, year), group in ddsAgrupadosPorReAn:
 
 ______________________________________________________________________________________________________
 
-c. Seção de Contagens: Contar a ocorrência de Regiões, de Países e a soma da coluna de valores 
-por Bebida.
+#c. Seção de Contagens: Contar a ocorrência de Regiões, de Países e a soma da coluna de valores 
+#por Bebida.
 
 #Questao 1.c)
 import pandas as pd
@@ -51,8 +51,8 @@ print("A seguir, a contagem de regioes: ", contagemOcrrReg, "\nJunto da contagem
 
 ______________________________________________________________________________________________________
 
-d. Realize análises estatísticas da coluna dos valores: Média, Moda, Mediana, Estatística
-Descritiva e Gráfico de comparação dos valores agrupados por tipo de bebida
+#d. Realize análises estatísticas da coluna dos valores: Média, Moda, Mediana, Estatística
+#Descritiva e Gráfico de comparação dos valores agrupados por tipo de bebida
 
 #Questao 1.d)
 
@@ -85,9 +85,9 @@ print("A seguir sera mostrado as analises estatisticas:\n", analiseEstats)
 
 ______________________________________________________________________________________________________
 
-e. Mostre resultados de acordo com alguns critérios: 
-    i. Mostrar a coluna de bebidas do ano de 1985.
-    ii. Mostrar a coluna de Região com valores acima de 4.
+#e. Mostre resultados de acordo com alguns critérios: 
+    #i. Mostrar a coluna de bebidas do ano de 1985.
+    #ii. Mostrar a coluna de Região com valores acima de 4.
 
 
 #Questao 1.e)
