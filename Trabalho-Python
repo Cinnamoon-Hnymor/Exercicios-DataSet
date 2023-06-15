@@ -5,3 +5,187 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/Cinnamoon-Hnymor/Exercicios-DataSet.git
 git push -u origin main
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+#Questao 2.a)
+import pandas as pd
+
+# A partir disso, sera feita a leitura do arquivo .CSV a partir do GitHub
+url = "https://raw.githubusercontent.com/Cinnamoon-Hnymor/Exercicios-DataSet/main/cursos-prouni.csv"
+dataFrame = pd.read_csv(url)
+
+# Fara a substituicao de todos os NaN por 0.0 dentro da coluna das notas
+colunasNotas = ['nota_integral_ampla', 'nota_integral_cotas', 'nota_parcial_ampla', 'nota_parcial_cotas', 'bolsa_integral_cotas', 'bolsa_integral_ampla', 'bolsa_parcial_cotas', 'bolsa_parcial_ampla']
+dataFrame[colunasNotas] = dataFrame[colunasNotas].fillna(0.0)
+
+print("Os dados limpos tendo NaN substituido por 0.0 abaixo:\n", dataFrame.head())
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#Questao 2.b)
+
+import pandas as pd
+
+# Ler o arquivo CSV a partir do GitHub
+url = "https://raw.githubusercontent.com/Cinnamoon-Hnymor/Exercicios-DataSet/main/cursos-prouni.csv"
+dataFrame = pd.read_csv(url)
+
+# Aqui serao agrupados pelo grau
+gruposDeGrau = dataFrame.groupby('grau')
+
+# Mostrar a quantidade total em cada grupo
+contagemTotalCursosGrau = gruposDeGrau.size()
+print("Os dados agrupados pelo grau estao abaixo:\n", contagemTotalCursosGrau)
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#Questao 2.c)
+
+import pandas as pd
+
+# Ler o arquivo CSV a partir do GitHub
+url = "https://raw.githubusercontent.com/Cinnamoon-Hnymor/Exercicios-DataSet/main/cursos-prouni.csv"
+dataFrame = pd.read_csv(url)
+
+# Cursos apos filtragem pedida na questao
+cursosFiltrados = ['Matemática', 'Medicina', 'Pedagogia']
+dataFrameFiltrado = dataFrame[dataFrame['curso_busca'].isin(cursosFiltrados)]
+
+# Agrupamento dos dados sobre os cursos
+gruposCursos = dataFrameFiltrado.groupby('curso_busca')
+
+# Exibicao dos cursos que foram selecionados segundo a questao
+mediaNotasCursos = gruposCursos['nota_integral_ampla'].mean()
+
+print("Os dados agrupados pelos cursos requisitados estao logo a seguir:\n", mediaNotasCursos)
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#Questao 2.d)
+
+import pandas as pd
+
+# Ler o arquivo CSV a partir do GitHub
+url = "https://raw.githubusercontent.com/Cinnamoon-Hnymor/Exercicios-DataSet/main/cursos-prouni.csv"
+dataFrame = pd.read_csv(url)
+
+# Agrupar os dados por Estado
+gruposPorEstado = dataFrame.groupby('uf_busca')
+
+# Calcular a media de notas de corte por Estado
+mediaNotasEstado = gruposPorEstado['nota_integral_ampla', 'nota_integral_cotas'].mean()
+print("A media de notas de corte do estado junto dos estados agrupados pedido:\n", mediaNotasEstado)
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#Questao 2.e)
+
+import pandas as pd
+
+# Ler o arquivo CSV a partir do GitHub
+url = "https://raw.githubusercontent.com/Cinnamoon-Hnymor/Exercicios-DataSet/main/cursos-prouni.csv"
+dataFrame = pd.read_csv(url)
+
+# Filtrar o DataFrame pelos cursos tecnológicos
+cursosTecnologicos = dataFrame[dataFrame['grau'] == 'Tecnológico']
+
+# Agrupar os dados pelos cursos
+dadosAgrpPorCursosTec = cursosTecnologicos.groupby('curso_busca')
+
+# Exibir Grupos
+qntdCursosTecno = dadosAgrpPorCursosTec.size()
+print("Os dados agrupados de acordo com os curso tecnologicos estao a seguir:\n", qntdCursosTecno)
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#Questao 2.f)
+
+import pandas as pd
+
+# Ler o arquivo CSV a partir do GitHub
+url = "https://raw.githubusercontent.com/Cinnamoon-Hnymor/Exercicios-DataSet/main/cursos-prouni.csv"
+dataFrame = pd.read_csv(url)
+
+# Elimina a coluna "cidade_filtro"
+dataFrame = dataFrame.drop('cidade_filtro', axis=1)
+
+# Exibir o DataFrame após a remoção da coluna
+print("O DataFrame apos a remocao da coluna:\n", dataFrame.head())
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#Questao 2.g)
+
+import pandas as pd
+
+# Ler o arquivo CSV a partir do GitHub
+url = "https://raw.githubusercontent.com/Cinnamoon-Hnymor/Exercicios-DataSet/main/cursos-prouni.csv"
+dataFrame = pd.read_csv(url)
+
+# Filtrar pelos cursos de Medicina
+FiltradoMed = dataFrame[dataFrame['curso_busca'] == 'Medicina']
+
+# Calcula a media das mensalidades dos cursos de Medicina
+mediaMensalMed = FiltradoMed['mensalidade'].mean()
+print(mediaMensalMed)
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#Questao 2.h
+import pandas as pd
+
+# Ler o arquivo CSV a partir do GitHub
+url = "https://raw.githubusercontent.com/Cinnamoon-Hnymor/Exercicios-DataSet/main/cursos-prouni.csv"
+dataFrame = pd.read_csv(url)
+
+#Filtra os cursos em tempo integral
+cursosFiltradoTI = dataFrame[dataFrame['turno'] == 'Integral']
+
+#Calculo da media do turno integral
+mediaNotas = cursosFiltradoTI[['nota_integral_ampla', 'nota_integral_cotas']].mean()
+
+#Exibe a nota de corte dos cursos integrais
+print("Média das notas de corte dos cursos em tempo integral:\n", mediaNotas)
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#Questao 2.i
+import pandas as pd
+
+# Ler o arquivo CSV a partir do GitHub
+url = "https://raw.githubusercontent.com/Cinnamoon-Hnymor/Exercicios-DataSet/main/cursos-prouni.csv"
+dataFrame = pd.read_csv(url)
+
+#Filtrar os bacharelados
+bachFiltrados = dataFrame[dataFrame['grau'] == 'Bacharelado']
+
+#Calcular a estatística descritiva das notas da ampla concorrencia
+descEstats = bachFiltrados['nota_integral_ampla'].describe()
+
+#Exibir a estatística descritiva das notas da ampla concorrencia
+print("Estatística Descritiva das Notas de Corte dos cursos de Bacharelado (Ampla Concorrência):\n", descEstats)
+
+________________________________________________________________________________________________________________________________________________________________________________________________________
+
+Questao 2.j)
+import pandas as pd
+import matplotlib.pyplot as plt
+
+url = 'https://raw.githubusercontent.com/Cinnamoon-Hnymor/Exercicios-DataSet/main/cursos-prouni.csv'
+df = pd.read_csv(url)
+
+# Agrupar os dados por grau e calcular a media
+AgrupGraueMedia = df.groupby('grau')['nota_integral_cotas'].mean()
+
+# Criacao do grafico
+plt.bar(AgrupGraueMedia.index, AgrupGraueMedia.values)
+
+# Eixos e titulo para o grafico
+plt.xlabel('Grau dos cursos')
+plt.ylabel('Notas Integral de Cotas')
+plt.title('Comparacao das Notas de Corte')
+
+# Exibir o gráfico
+plt.show()
