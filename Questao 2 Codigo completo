@@ -1,13 +1,11 @@
-echo "# Exercicios-DataSet" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/Cinnamoon-Hnymor/Exercicios-DataSet.git
-git push -u origin main
+2. Seja o dataset chamado cursos-prouni.csv que se encontra no endereço Cursos e notas de corte do 
+PROUNI 2018 - Datasets - Brasil.IO. Baixe o arquivo, armazene no seu github** e obtenha os dados 
+a partir desse endereço do github e realize as seguintes análises (2,5 pontos):
+
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________
 
+#a. Efetuar a limpeza das colunas de notas: onde tiver NaN (Not a Number), substituir por 0,0.
 
 #Questao 2.a)
 import pandas as pd
@@ -23,6 +21,8 @@ dataFrame[colunasNotas] = dataFrame[colunasNotas].fillna(0.0)
 print("Os dados limpos tendo NaN substituido por 0.0 abaixo:\n", dataFrame.head())
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#b. Agrupe os dados pelo grau (Bacharelado, Licenciatura, etc).
 
 #Questao 2.b)
 
@@ -40,6 +40,8 @@ contagemTotalCursosGrau = gruposDeGrau.size()
 print("Os dados agrupados pelo grau estao abaixo:\n", contagemTotalCursosGrau)
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#c. Agrupe os dados pelos cursos de Matemática, Medicina e Pedagogia.
 
 #Questao 2.c)
 
@@ -63,6 +65,8 @@ print("Os dados agrupados pelos cursos requisitados estao logo a seguir:\n", med
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________
 
+#d. Agrupe os dados por Estado e obtenha a média de notas de corte por Estado.
+
 #Questao 2.d)
 
 import pandas as pd
@@ -79,6 +83,8 @@ mediaNotasEstado = gruposPorEstado['nota_integral_ampla', 'nota_integral_cotas']
 print("A media de notas de corte do estado junto dos estados agrupados pedido:\n", mediaNotasEstado)
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#e. Agrupe os dados pelos cursos Tecnológicos.
 
 #Questao 2.e)
 
@@ -100,6 +106,8 @@ print("Os dados agrupados de acordo com os curso tecnologicos estao a seguir:\n"
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________
 
+#f. Elimine a coluna “cidade_filtro” do dataframe.
+
 #Questao 2.f)
 
 import pandas as pd
@@ -115,6 +123,8 @@ dataFrame = dataFrame.drop('cidade_filtro', axis=1)
 print("O DataFrame apos a remocao da coluna:\n", dataFrame.head())
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#g. Apresente a média das mensalidades dos cursos de Medicina.
 
 #Questao 2.g)
 
@@ -132,6 +142,8 @@ mediaMensalMed = FiltradoMed['mensalidade'].mean()
 print(mediaMensalMed)
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#h. Média das notas de corte dos cursos de tempo integral
 
 #Questao 2.h
 import pandas as pd
@@ -151,6 +163,8 @@ print("Média das notas de corte dos cursos em tempo integral:\n", mediaNotas)
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________
 
+#i. Estatística Descritiva das Notas Integral Ampla dos cursos de Bacharelado.
+
 #Questao 2.i
 import pandas as pd
 
@@ -168,6 +182,9 @@ descEstats = bachFiltrados['nota_integral_ampla'].describe()
 print("Estatística Descritiva das Notas de Corte dos cursos de Bacharelado (Ampla Concorrência):\n", descEstats)
 
 ________________________________________________________________________________________________________________________________________________________________________________________________________
+
+#j. Gráfico comparativo entre o grau dos cursos (Bacharelado, Licenciatura, Tecnologia, etc) 
+pelas Notas Integral de Cotas.
 
 Questao 2.j)
 import pandas as pd
